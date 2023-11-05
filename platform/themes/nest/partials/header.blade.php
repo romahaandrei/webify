@@ -24,7 +24,7 @@
             --color-success: {{ theme_option('color_success', '#81B13D') }};
             --color-info: {{ theme_option('color_info', '#2cc1d8') }};
             --color-text: {{ theme_option('color_text', '#7E7E7E') }};
-            --color-heading: {{ theme_option('color_heading', '#253D4E') }};
+            --color-heading: {{ theme_option('color_heading', '##') }};
             --color-grey-1: {{ theme_option('color_grey_1', '#253D4E') }};
             --color-grey-2: {{ theme_option('color_grey_2', '#242424') }};
             --color-grey-4: {{ theme_option('color_grey_4', '#adadad') }};
