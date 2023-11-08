@@ -40,11 +40,11 @@
         </div>
     </div>
     <div class="product-content-wrap">
-        @if ($category = $product->categories->sortByDesc('id')->first())
-            <div class="product-category">
+        <div class="product-category">
+            @if ($category = $product->categories->sortByDesc('id')->first())
                 <a href="{{ $category->url }}">{!! BaseHelper::clean($category->name) !!}</a>
-            </div>
-        @endif
+            @endif
+        </div>
         <h2 class="text-truncate"><a href="{{ $product->url }}" title="{{ $product->name }}">{{ $product->name }}</a></h2>
         @if (EcommerceHelper::isReviewEnabled() && $product->reviews_count)
             <div class="product-rate-cover">

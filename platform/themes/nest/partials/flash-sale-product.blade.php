@@ -1,8 +1,10 @@
-<div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" data-wow-delay="0">
+<div class="product-cart-wrap style-2">
     <div class="product-img-action-wrap">
         <div class="product-img">
             <a href="{{ $product->url }}">
-                <img src="{{ RvMedia::getImageUrl($flashSale->getMetaData('image', true), null, false, RvMedia::getDefaultImage()) }}" alt="{{ $product->name }}" />
+                <figure 
+                    style="background-image: linear-gradient(to right top, #051937, #003e62, #00667f, #009088, #3bb77e);">
+                </figure>
             </a>
         </div>
     </div>
@@ -34,12 +36,12 @@
                 </div>
                 @if (EcommerceHelper::isCartEnabled())
                     <div class="add-cart">
-                        <a aria-label="{{ __('Add To Cart') }}"
+                        <a aria-label=""
                             class="action-btn add-to-cart-button add"
                             data-id="{{ $product->id }}"
                             data-url="{{ route('public.ajax.cart.store') }}"
                             href="#">
-                            <i class="fi-rs-shopping-cart mr-5"></i> <span class="d-inline-block">{{ __('Add') }}</span>
+                            <i class="fi-rs-shopping-cart mr-5"></i> <span class="d-inline-block"></span>
                         </a>
                     </div>
                 @endif

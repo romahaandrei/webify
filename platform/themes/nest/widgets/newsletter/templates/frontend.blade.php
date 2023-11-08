@@ -1,5 +1,5 @@
 @if (is_plugin_active('newsletter'))
-    <section class="newsletter mb-15 wow animate__animated animate__fadeIn">
+    <section class="newsletter mb-15">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

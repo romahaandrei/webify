@@ -1,4 +1,4 @@
-<div class="banner-img wow animate__animated animate__fadeInUp {{ $class ?? '' }}" @if (!empty($loop)) data-wow-delay="{{ $loop->iteration * 2 / 10 }}" @endif>
+<div class="banner-img {{ $class ?? '' }}">
     <img src="{{ RvMedia::getImageUrl($ads->image) }}" alt="{{ $ads->name }}">
     <div class="banner-text">
         <h4>{!! BaseHelper::clean(nl2br($ads->getMetaData('subtitle', true) ?: '')) !!}</h4>

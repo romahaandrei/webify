@@ -1,4 +1,4 @@
-<div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
+<div class="footer-link-widget col">
     <h4 class="widget-title">{{ $config['name'] }}</h4>
     <ul class="footer-list mb-sm-5 mb-md-0">
         {!! Menu::generateMenu([

@@ -44,6 +44,7 @@
     clear: both;
     border-radius: 10px;
     overflow: hidden;
+    max-height: 325px;
 
     img {
         border-radius: 10px;
@@ -112,7 +113,7 @@
     &.style-2 {
         border-radius: 15px;
         overflow: hidden;
-        height: 395px;
+        min-height: 250px;
         background: url(../imgs/banner/banner-4.png) no-repeat center bottom;
         background-size: cover;
         width: 100%;

@@ -3,7 +3,7 @@
         $ads = AdsManager::getData()->where('key', $config['ads_key'])->first();
     @endphp
     @if ($ads)
-    <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
+    <div class="banner-img d-lg-block d-none">
         <img src="{{ RvMedia::getImageUrl($ads->image) }}" alt="{{ $ads->name }}" />
         <div class="banner-text">
             <span>{{ $config['name'] ?: $ads->name }}</span>

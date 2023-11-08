@@ -3,8 +3,8 @@
         <div class="row">
             @foreach($data as $item)
                 <div class="col-xl-{{ (12 / count($data)) }} col-lg-6 col-md-6 mb-md-0">
-                    <h4 class="section-title style-1 mb-30 animated animated">{{ $item['title'] }}</h4>
-                    <div class="product-list-small animated animated">
+                    <h4 class="section-title style-1 mb-30">{{ $item['title'] }}</h4>
+                    <div class="product-list-small">
                         @foreach($item['products'] as $product)
                             @php
                                 if ($product->is_variation) {
@@ -15,10 +15,10 @@
                                 }
                             @endphp
                             <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="{{ $product->url }}">
-                                        {!! RvMedia::image($product->image, $product->name, 'product-thumb') !!}
-                                    </a>
+                                <figure class="col-md-4 mb-0"
+                                    style="background-image: linear-gradient(to right top, #051937, #003e62, #00667f, #009088, #3bb77e);"
+                                >
+                                    <a href="{{ $product->url }}"><div class="project-abr">{{ strtoupper(substr($product->name, 0, 2)) }}</div></a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
                                     <p class="text-truncate font-heading h6">

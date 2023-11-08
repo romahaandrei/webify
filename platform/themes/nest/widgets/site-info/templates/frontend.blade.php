@@ -1,5 +1,5 @@
 <div class="col">
-    <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0  wow animate__animated animate__fadeInUp" data-wow-delay="0">
+    <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0">
         <div class="logo mb-30">
             @if (theme_option('logo'))
                 <a href="{{ route('public.index') }}" class="mb-15"><img src="{{ RvMedia::getImageUrl(theme_option('logo')) }}" alt="{{ theme_option('site_title') }}"></a>

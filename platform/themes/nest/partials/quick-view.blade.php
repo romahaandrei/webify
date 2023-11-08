@@ -98,7 +98,7 @@
                         @if (EcommerceHelper::isCartEnabled())
                             <button type="submit"
                                     class="button button-add-to-cart @if ($product->isOutOfStock()) btn-disabled @endif"
-                                    @if ($product->isOutOfStock()) disabled @endif><i class="fi-rs-shopping-cart"></i>{{ __('Add to cart') }}</button>
+                                    @if ($product->isOutOfStock()) disabled @endif><i class="fi-rs-shopping-cart"></i></button>
                         @endif
 
                         @if (EcommerceHelper::isWishlistEnabled())

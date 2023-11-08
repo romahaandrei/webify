@@ -266,7 +266,7 @@
     border: 1px solid $border-color;
 
     .social-login {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 700;
         font-family: $font-heading;
         display: flex;
@@ -284,11 +284,13 @@
         }
 
         &.facebook-login {
+            justify-content: center;
             background-color: #1877F2;
             color: #fff;
         }
 
         &.google-login {
+            justify-content: center;
             background-color: #fff;
             color: $color-text;
             border: 1px solid #F2F3F4;

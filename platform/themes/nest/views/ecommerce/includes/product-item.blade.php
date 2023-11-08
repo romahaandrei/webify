@@ -1,12 +1,6 @@
 @if ($product)
-    <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" @if(isset($loop)) data-wow-delay="{{ ($loop->index + 1) / 10 }}s" @endif>
-        <div class="product-img-action-wrap">
-            <div class="product-img product-img-zoom">
-                <a href="{{ $product->url }}">
-                    <img class="default-img" src="{{ RvMedia::getImageUrl($product->image, 'product-thumb', false, RvMedia::getDefaultImage()) }}" alt="{{ $product->name }}">
-                    <img class="hover-img" src="{{ RvMedia::getImageUrl(Arr::get($product->images, 1, $product->image), 'product-thumb', false, RvMedia::getDefaultImage()) }}" alt="{{ $product->name }}">
-                </a>
-            </div>
+    <div class="product-cart-wrap mb-30">
+        <div class="product-content-wrap">
             <div class="product-badges product-badges-position product-badges-mrg">
                 @if ($product->isOutOfStock())
                     <span class="bg-dark" style="font-size: 11px;">{{ __('Out Of Stock') }}</span>
@@ -22,13 +16,11 @@
                     @endif
                 @endif
             </div>
-        </div>
-        <div class="product-content-wrap">
-            @if ($category = $product->categories->sortByDesc('id')->first())
-                <div class="product-category">
+            <div class="product-category">
+                @if ($category = $product->categories->sortByDesc('id')->first())
                     <a href="{{ $category->url }}">{!! BaseHelper::clean($category->name) !!}</a>
-                </div>
-            @endif
+                @endif
+            </div>
             <h2 class="text-truncate"><a href="{{ $product->url }}" title="{{ $product->name }}" title="{{ $product->name }}">{{ $product->name }}</a></h2>
 
             @if (EcommerceHelper::isReviewEnabled() && $product->reviews_count)
@@ -65,7 +57,7 @@
                                 data-id="{{ $product->id }}"
                                 data-url="{{ route('public.ajax.cart.store') }}"
                                 href="#">
-                                <i class="fi-rs-shopping-cart mr-5"></i> <span class="d-inline-block">{{ __('Add') }}</span>
+                                <i class="fi-rs-shopping-cart mr-5"></i> <span class="d-inline-block"></span>
                             </a>
                         </div>
                     @endif

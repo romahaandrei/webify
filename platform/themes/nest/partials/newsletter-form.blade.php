@@ -2,7 +2,7 @@
     <form class="newsletter-form {{ $className ?? '' }}" method="post" action="{{ route('public.newsletter.subscribe') }}">
         @csrf
         <div class="form-subscribe d-flex">
-            <input type="email" name="email" placeholder="{{ __('Your email address') }}" />
+            <input type="email" autocomplete="false" name="email" placeholder="{{ __('Your email address') }}" />
             <button class="btn" type="submit">{{ __('Subscribe') }}</button>
         </div>
 

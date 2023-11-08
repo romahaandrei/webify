@@ -7,7 +7,7 @@
         </div>
         <div class="row product-grid-{{ (int)$shortcode->per_row > 0 ? (int)$shortcode->per_row : 4 }}">
             @foreach($products as $product)
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-5 mb-sm-5">
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-5">
                     @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.product-item', compact('product'))
                 </div>
             @endforeach

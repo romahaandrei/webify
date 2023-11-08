@@ -15,7 +15,7 @@
                 'speed' => 800,
         ]) }}" data-items-xl="6" data-items-lg="4" data-items-md="3" data-items-sm="2">
                @foreach($categories as $category)
-                    <div class="card-2 wow animate__animated animate__fadeInUp"
+                    <div class="card-2"
                          data-wow-delay="{{ ($loop->index + 1) / 10 }}s"
                          style="{{ $category->getMetaData('background_color', true) ? 'background-color:' . $category->getMetaData('background_color', true) : '' }}">
                         <figure class="img-hover-scale overflow-hidden">
