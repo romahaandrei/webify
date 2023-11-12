@@ -1,5 +1,6 @@
 <?php
 
+use Botble\Menu\Models\Menu;
 use Botble\Widget\AbstractWidget;
 
 class CustomMenuWidget extends AbstractWidget
@@ -11,5 +12,12 @@ class CustomMenuWidget extends AbstractWidget
             'description' => __('Add a custom menu to your widget area.'),
             'menu_id' => null,
         ]);
+    }
+
+    protected function adminConfig(): array
+    {
+        return [
+            'menus' => Menu::query()->pluck('name', 'slug')->all(),
+        ];
     }
 }

@@ -53,7 +53,7 @@ class AuditLogTable extends TableAbstract
             IdColumn::make(),
             Column::make('action')
                 ->title(trans('plugins/audit-log::history.action'))
-                ->alignLeft(),
+                ->alignStart(),
         ];
     }
 

@@ -1393,7 +1393,7 @@
           }
         });
       });
-      $(document).on('change', '#products-filter-ajax select, input', function () {
+      $('.primary-sidebar #products-filter-ajax').on('change', 'select, input', function () {
         $('#products-filter-ajax').trigger('submit');
       });
     });

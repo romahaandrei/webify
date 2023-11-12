@@ -24,7 +24,7 @@
             --color-success: {{ theme_option('color_success', '#81B13D') }};
             --color-info: {{ theme_option('color_info', '#2cc1d8') }};
             --color-text: {{ theme_option('color_text', '#7E7E7E') }};
-            --color-heading: {{ theme_option('color_heading', '##') }};
+            --color-heading: {{ theme_option('color_heading', '#253D4E') }};
             --color-grey-1: {{ theme_option('color_grey_1', '#253D4E') }};
             --color-grey-2: {{ theme_option('color_grey_2', '#242424') }};
             --color-grey-4: {{ theme_option('color_grey_4', '#adadad') }};
@@ -410,10 +410,10 @@
                 </div>
             @endif
         </div>
-        @if (theme_option('social_links'))
+        @if ($socialLinks = theme_option('social_links'))
             <div class="mobile-social-icon mb-50">
-                <p class="mb-15 font-heading h6">{{ __('Follow Us') }}</p>
-                @foreach(json_decode(theme_option('social_links'), true) as $socialLink)
+                <p class="mb-15 font-heading h6 me-2">{{ __('Follow Us') }}</p>
+                @foreach(json_decode($socialLinks, true) as $socialLink)
                     @if (count($socialLink) == 3)
                         <a href="{{ $socialLink[2]['value'] }}"
                         title="{{ $socialLink[0]['value'] }}">

@@ -34,7 +34,7 @@ class VendorTable extends CustomerTable
 
         $columns[] = Column::make('store_name')
             ->title(trans('plugins/marketplace::marketplace.store_name'))
-            ->alignLeft()
+            ->alignStart()
             ->orderable(false)
             ->searchable(false);
 

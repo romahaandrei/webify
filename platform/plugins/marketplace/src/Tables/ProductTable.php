@@ -95,13 +95,13 @@ class ProductTable extends TableAbstract
             NameColumn::make()->route('marketplace.vendor.products.edit'),
             Column::make('price')
                 ->title(trans('plugins/ecommerce::products.price'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('quantity')
                 ->title(trans('plugins/ecommerce::products.quantity'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('sku')
                 ->title(trans('plugins/ecommerce::products.sku'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('order')
                 ->title(trans('core/base::tables.order'))
                 ->width(50),

@@ -26,10 +26,9 @@ class CategoryController extends BaseController
         PageTitle::setTitle(trans('plugins/blog::categories.menu'));
 
         $categories = Category::query()
-            ->wherePublished()
-            ->orderByDesc('created_at')
             ->orderByDesc('is_default')
             ->orderBy('order')
+            ->orderByDesc('created_at')
             ->with('slugable')
             ->withCount('posts')
             ->get();

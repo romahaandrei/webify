@@ -86,12 +86,12 @@ class UnverifiedVendorTable extends TableAbstract
                 ->permission('marketplace.unverified-vendors.edit'),
             Column::make('store_name')
                 ->title(trans('plugins/marketplace::unverified-vendor.forms.store_name'))
-                ->alignLeft()
+                ->alignStart()
                 ->orderable(false)
                 ->searchable(false),
             Column::make('store_phone')
                 ->title(trans('plugins/marketplace::unverified-vendor.forms.store_phone'))
-                ->alignLeft()
+                ->alignStart()
                 ->orderable(false)
                 ->searchable(false),
             CreatedAtColumn::make(),

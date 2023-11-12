@@ -78,7 +78,7 @@ class WithdrawalTable extends TableAbstract
             IdColumn::make(),
             Column::make('customer_id')
                 ->title(trans('plugins/marketplace::withdrawal.vendor'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::formatted('amount')->title(trans('plugins/ecommerce::order.amount')),
             Column::formatted('fee')->title(trans('plugins/ecommerce::shipping.fee')),
             CreatedAtColumn::make(),

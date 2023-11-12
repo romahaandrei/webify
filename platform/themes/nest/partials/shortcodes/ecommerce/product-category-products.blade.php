@@ -6,14 +6,21 @@
             </div>
             <div class="heading-tab-right wow fadeIn animated">
                 <ul class="nav nav-tabs right no-border" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" type="button" data-url="{{ route('public.ajax.products-by-category', $category->id) }}?limit={{ $limit }}" role="tab" aria-controls="product-collections-tab" aria-selected="true">{{ __('All') }}</button>
-                    </li>
-                    @foreach($category->activeChildren as $item)
+                    @if($category->activeChildren->isNotEmpty())
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" type="button" data-url="{{ route('public.ajax.products-by-category', $item->id) }}?limit={{ $limit }}" role="tab" aria-controls="product-categories-product" aria-selected="true">{{ $item->name }}</button>
+                            <button class="nav-link active" type="button" data-url="{{ route('public.ajax.products-by-category', $category->id) }}?limit={{ $limit }}" role="tab" aria-controls="product-collections-tab" aria-selected="true">{{ __('All') }}</button>
                         </li>
-                    @endforeach
+
+                        @foreach($category->activeChildren as $item)
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" type="button" data-url="{{ route('public.ajax.products-by-category', $item->id) }}?limit={{ $limit }}" role="tab" aria-controls="product-categories-product" aria-selected="true">{{ $item->name }}</button>
+                            </li>
+                        @endforeach
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ $category->url }}">{{ __('View All') }}</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -26,7 +33,7 @@
             <div class="tab-pane fade show active" id="product-categories-product" role="tabpanel" aria-labelledby="product-categories-product-tab">
                 <div class="row product-grid-{{ $perRow }}">
                     @foreach($products as $product)
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-5">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-5 mb-sm-5">
                             @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.product-item', compact('product'))
                         </div>
                     @endforeach

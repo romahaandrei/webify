@@ -146,7 +146,7 @@
 
 {!! apply_filters('ecommerce_product_variation_form_middle', null, $product) !!}
 
-{{-- <div class="form-group mb-3">
+<div class="form-group mb-3">
     <div class="storehouse-management">
         <div class="mt5">
             <input
@@ -213,11 +213,11 @@
             {{ $label }}
         </label>
     @endforeach
-</div> --}}
+</div>
 
 <hr />
 
-{{-- @if (
+@if (
     !EcommerceHelper::isEnabledSupportDigitalProducts() ||
         (!$product &&
             !$originalProduct &&
@@ -293,7 +293,7 @@
             </div>
         </div>
     </div>
-@endif --}}
+@endif
 
 @if (EcommerceHelper::isEnabledSupportDigitalProducts() &&
         ((!$product &&

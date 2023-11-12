@@ -29,13 +29,15 @@ Route::group(['middleware' => ['web', 'core']], function () {
                     ->wherePrimaryKey();
             });
 
-            Route::group(['controller' => CartController::class], function () {
-                Route::post('cart', 'store')->name('cart.store');
+            if (is_plugin_active('ecommerce')) {
+                Route::group(['controller' => CartController::class], function () {
+                    Route::post('cart', 'store')->name('cart.store');
 
-                Route::put('cart', 'update')->name('cart.update');
+                    Route::put('cart', 'update')->name('cart.update');
 
-                Route::delete('cart/{id}', 'destroy')->name('cart.destroy');
-            });
+                    Route::delete('cart/{id}', 'destroy')->name('cart.destroy');
+                });
+            }
         });
     });
 });

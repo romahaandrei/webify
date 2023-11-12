@@ -109,10 +109,10 @@ class UserTable extends TableAbstract
         return [
             Column::make('username')
                 ->title(trans('core/acl::users.username'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('email')
                 ->title(trans('core/acl::users.email'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('role_name')
                 ->title(trans('core/acl::users.role'))
                 ->searchable(false)

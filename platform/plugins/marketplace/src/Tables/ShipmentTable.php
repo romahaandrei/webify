@@ -97,7 +97,7 @@ class ShipmentTable extends TableAbstract
                 ->title(trans('plugins/ecommerce::shipping.order_id')),
             Column::make('user_id')
                 ->title(trans('plugins/ecommerce::order.customer_label'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('price')
                 ->title(trans('plugins/ecommerce::shipping.shipping_amount')),
             Column::make('cod_status')

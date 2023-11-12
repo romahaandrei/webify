@@ -2,7 +2,10 @@
 
 namespace Botble\Table\Columns;
 
-class IdColumn extends Column
+use Botble\Base\Models\BaseModel;
+use Botble\Table\Contracts\EditedColumn;
+
+class IdColumn extends Column implements EditedColumn
 {
     public static function make(array|string $data = [], string $name = ''): static
     {
@@ -10,6 +13,14 @@ class IdColumn extends Column
             ->title(trans('core/base::tables.id'))
             ->alignCenter()
             ->width(20)
-            ->columnVisibility();
+            ->columnVisibility()
+            ->when(BaseModel::getTypeOfId() !== 'BIGINT', function (IdColumn $column) {
+                return $column->limit();
+            });
+    }
+
+    public function editedFormat($value): string|null
+    {
+        return $this->applyLimitIfAvailable($value);
     }
 }

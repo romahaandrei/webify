@@ -35,6 +35,9 @@ class RoleTable extends TableAbstract
             ->eloquent($this->query())
             ->editColumn('created_by', function (Role $item) {
                 return BaseHelper::clean($item->author->name);
+            })
+            ->editColumn('description', function (Role $item) {
+                return $item->description ?: '&mdash;';
             });
 
         return $this->toJson($data);
@@ -64,7 +67,7 @@ class RoleTable extends TableAbstract
             NameColumn::make()->route('roles.edit'),
             Column::make('description')
                 ->title(trans('core/base::tables.description'))
-                ->alignLeft(),
+                ->alignStart(),
             CreatedAtColumn::make(),
             Column::make('created_by')
                 ->title(trans('core/acl::permissions.created_by'))

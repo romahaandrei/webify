@@ -1602,7 +1602,7 @@
                 })
             })
 
-            $(document).on('change', '#products-filter-ajax select, input', () => {
+            $('.primary-sidebar #products-filter-ajax').on('change', 'select, input', () => {
                 $('#products-filter-ajax').trigger('submit')
             })
         })

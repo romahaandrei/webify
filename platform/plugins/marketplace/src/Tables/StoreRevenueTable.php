@@ -135,28 +135,28 @@ class StoreRevenueTable extends TableAbstract
             IdColumn::make(),
             Column::make('order_id')
                 ->title(trans('plugins/ecommerce::order.description'))
-                ->alignLeft(),
+                ->alignStart(),
         ];
 
         if (! $this->customerId) {
             $columns[] = Column::make('customer_id')
                 ->title(trans('plugins/marketplace::store.store'))
-                ->alignLeft();
+                ->alignStart();
         }
 
         return array_merge($columns, [
             Column::make('fee')
                 ->title(trans('plugins/ecommerce::shipping.fee'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('sub_amount')
                 ->title(trans('plugins/ecommerce::order.sub_amount'))
-                ->alignLeft(),
+                ->alignStart(),
             Column::make('amount')
                 ->title(trans('plugins/ecommerce::order.amount'))
-                ->alignLeft(),
+                ->alignStart(),
             EnumColumn::make('type')
                 ->title(trans('plugins/marketplace::revenue.forms.type'))
-                ->alignLeft(),
+                ->alignStart(),
             CreatedAtColumn::make(),
         ]);
     }

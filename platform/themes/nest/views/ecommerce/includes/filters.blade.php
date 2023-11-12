@@ -31,12 +31,14 @@
                 <div class="col-lg-3 col-md-4 mb-lg-0 mb-md-5 mb-sm-5 widget-filter-item product-categories-filter-widget">
                     <h5 class="mb-20 widget__title" data-title="{{ __('Category') }}">{{ __('By :name', ['name' => __('categories')]) }}</h5>
                     <div class="custome-checkbox ps-custom-scrollbar">
-                        @include(Theme::getThemeNamespace('views.ecommerce.includes.categories'), [
-                            'categories' => $categories,
-                            'activeCategoryId' => $categoryId,
-                            'categoriesRequest' => $categoriesRequest,
-                            'urlCurrent' => $urlCurrent
-                        ])
+                        <ul class="ps-list--categories">
+                            @include(Theme::getThemeNamespace('views.ecommerce.includes.categories'), [
+                                'categories' => $categories,
+                                'activeCategoryId' => $categoryId,
+                                'categoriesRequest' => $categoriesRequest,
+                                'urlCurrent' => $urlCurrent
+                            ])
+                        </ul>
                     </div>
                 </div>
             @endif
@@ -111,12 +113,14 @@
             <div class="sidebar-widget widget-filter-item product-categories-filter-widget mb-30" data-type="price">
                 <h5 class="section-title style-1 mb-30">{{ __('Categories') }}</h5>
                 <div class="custome-checkbox ps-custom-scrollbar">
-                    @include(Theme::getThemeNamespace('views.ecommerce.includes.categories'), [
-                        'categories' => $categories,
-                        'activeCategoryId' => $categoryId,
-                        'categoriesRequest' => $categoriesRequest,
-                        'urlCurrent' => $urlCurrent
-                    ])
+                    <ul class="ps-list--categories">
+                        @include(Theme::getThemeNamespace('views.ecommerce.includes.categories'), [
+                            'categories' => $categories,
+                            'activeCategoryId' => $categoryId,
+                            'categoriesRequest' => $categoriesRequest,
+                            'urlCurrent' => $urlCurrent
+                        ])
+                    </ul>
                 </div>
             </div>
         @endif

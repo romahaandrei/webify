@@ -2,13 +2,16 @@
 
 namespace Botble\Table\Columns;
 
-class LinkableColumn extends Column
+use Botble\Base\Contracts\BaseModel;
+use Botble\Base\Facades\BaseHelper;
+use Botble\Base\Facades\Html;
+use Botble\Table\Contracts\EditedColumn;
+
+class LinkableColumn extends Column implements EditedColumn
 {
     protected array $route = [];
 
     protected string|null $permission = null;
-
-    protected int $limit = 0;
 
     public function route(string $route, array $parameters = [], bool $absolute = true): static
     {
@@ -34,15 +37,30 @@ class LinkableColumn extends Column
         return $this->permission;
     }
 
-    public function limit(int $words): static
+    public function editedFormat($value): string
     {
-        $this->limit = $words;
+        $item = $this->getModel();
 
-        return $this;
-    }
+        if (! $item instanceof BaseModel) {
+            return $value;
+        }
 
-    public function getLimit(): int
-    {
-        return $this->limit;
+        $value = BaseHelper::clean($value);
+
+        $valueTruncated = $this->applyLimitIfAvailable($value);
+
+        $route = $this->getRoute();
+
+        if (! $route || ! $this->getTable()->hasPermission($this->getPermission() ?: $route[0])) {
+            return $valueTruncated ?: '&mdash;';
+        }
+
+        $value = Html::link(
+            route($route[0], $route[1] ?: $item->getKey(), $route[2]),
+            $valueTruncated,
+            ['title' => $value]
+        );
+
+        return apply_filters('table_name_column_data', $value, $item, $this);
     }
 }

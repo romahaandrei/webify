@@ -87,7 +87,7 @@ class StoreTable extends TableAbstract
             NameColumn::make()->route('marketplace.store.edit'),
             Column::make('earnings')
                 ->title(trans('plugins/marketplace::marketplace.tables.earnings'))
-                ->alignLeft()
+                ->alignStart()
                 ->orderable(false)
                 ->searchable(false)
                 ->width('100'),
@@ -97,7 +97,7 @@ class StoreTable extends TableAbstract
                 ->searchable(false),
             Column::make('customer_name')
                 ->title(trans('plugins/marketplace::marketplace.vendor'))
-                ->alignLeft()
+                ->alignStart()
                 ->orderable(false)
                 ->searchable(false)
                 ->printable(false),
