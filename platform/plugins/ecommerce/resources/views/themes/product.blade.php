@@ -197,15 +197,6 @@
                             (<span> {{ $product->reviews_count }}</span>)</a>
                     </li>
                 @endif
-                <li class="nav-item">
-                    <a
-                        class=""
-                        data-bs-toggle="tab"
-                        href="#tab_more_products"
-                        role="tab"
-                    >{{ __('Related products') }}</a>
-                </li>
-
             </ul>
             <div class="product-content-tabs-wrapper tab-content container">
                 <div
@@ -268,58 +259,7 @@
                         </h6>
                     </div>
                 @endif
-
-                <div
-                    class="tab-pane fade"
-                    id="tab_more_products"
-                    role="tabpanel"
-                >
-                    <div class="row">
-                        @php
-                            $crossSaleProducts = get_cross_sale_products($product);
-                        @endphp
-
-                        @if ($crossSaleProducts->isNotEmpty())
-
-                            <div class="container product-carousel">
-                                <div
-                                    class="product-item-4 owl-carousel owl-theme nf-carousel-theme"
-                                    id="new-trending"
-                                >
-                                    @foreach ($crossSaleProducts as $crossSaleProduct)
-                                        @include('plugins/ecommerce::themes.includes.default-product', [
-                                            'product' => $crossSaleProduct,
-                                        ])
-                                    @endforeach
-                                </div>
-                            </div>
-
-                        @endif
-                    </div>
-                </div>
             </div>
         </div>
-
-        @php
-            $relatedProducts = get_related_products($product);
-        @endphp
-
-        @if ($relatedProducts->isNotEmpty())
-            <div class="container product-carousel">
-                <h2 class="page-title">{{ __('Related products') }}</h2>
-                <div
-                    class="product-item-4 owl-carousel owl-theme nf-carousel-theme1"
-                    id="new-trending"
-                >
-                    @foreach ($relatedProducts as $related)
-                        @include('plugins/ecommerce::themes.includes.default-product', [
-                            'product' => $related,
-                        ])
-                    @endforeach
-
-                </div>
-            </div>
-
-        @endif
     </section>
 </div>

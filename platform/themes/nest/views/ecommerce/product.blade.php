@@ -409,37 +409,4 @@
             </div>
         </div>
     </div>
-    @php
-        $crossSellProducts = get_cross_sale_products($product);
-    @endphp
-    @if (count($crossSellProducts) > 0)
-        <div class="mt-60">
-            <h3 class="section-title style-1 mb-30">{{ __('You may also like') }}</h3>
-
-            <div class="row">
-                @foreach($crossSellProducts as $crossProduct)
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
-                        @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.product-item', ['product' => $crossProduct])
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
-
-    @php
-        $relatedProducts = get_related_products($product);
-    @endphp
-    @if (count($crossSellProducts) > 0)
-        <div class="mt-60">
-            <h3 class="section-title style-1 mb-30">{{ __('Related products') }}</h3>
-
-            <div class="row">
-                @foreach($relatedProducts as $relatedProduct)
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
-                        @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.product-item', ['product' => $relatedProduct])
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
 </div>

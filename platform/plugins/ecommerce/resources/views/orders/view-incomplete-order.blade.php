@@ -152,8 +152,6 @@
                                                     <p class="mb0">{{ trans('plugins/ecommerce::order.shipping_fee') }}
                                                     </p>
                                                     <p class="mb0 font-size-12px">{{ $order->shipping_method_name }}</p>
-                                                    <p class="mb0 font-size-12px">{{ $weight }}
-                                                        {{ ecommerce_weight_unit(true) }}</p>
                                                 </td>
                                                 <td class="text-end p-none-t pl10">
                                                     <p class="mb0">{{ format_price($order->shipping_amount) }}</p>

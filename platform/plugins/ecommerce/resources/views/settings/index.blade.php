@@ -148,34 +148,6 @@
                     />
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <x-core-setting::select
-                        name="store_weight_unit"
-                        :label="trans('plugins/ecommerce::ecommerce.weight_unit')"
-                        :options="[
-                            'g' => trans('plugins/ecommerce::ecommerce.setting.weight_unit_gram'),
-                            'kg' => trans('plugins/ecommerce::ecommerce.setting.weight_unit_kilogram'),
-                            'lb' => trans('plugins/ecommerce::ecommerce.setting.weight_unit_lb'),
-                            'oz' => trans('plugins/ecommerce::ecommerce.setting.weight_unit_oz'),
-                        ]"
-                        :value="get_ecommerce_setting('store_weight_unit', 'g')"
-                    />
-                </div>
-                <div class="col-sm-6">
-                    <x-core-setting::select
-                        name="store_width_height_unit"
-                        :label="trans('plugins/ecommerce::ecommerce.height_unit')"
-                        :options="[
-                            'cm' => trans('plugins/ecommerce::ecommerce.setting.height_unit_cm'),
-                            'm' => trans('plugins/ecommerce::ecommerce.setting.height_unit_m'),
-                            'inch' => trans('plugins/ecommerce::ecommerce.setting.height_unit_inch'),
-                        ]"
-                        :value="get_ecommerce_setting('store_width_height_unit', 'cm')"
-                    />
-                </div>
-            </div>
         </x-core-setting::section>
 
         <x-core-setting::section

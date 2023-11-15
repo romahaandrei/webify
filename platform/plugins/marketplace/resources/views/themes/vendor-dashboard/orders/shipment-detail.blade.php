@@ -19,10 +19,6 @@
                 <span>{{ trans('plugins/ecommerce::shipping.shipping_method') }}:
                     <span><i>{{ $shipment->order->shipping_method_name }}</i></span></span>
             </div>
-            <div class="flexbox-grid-form-item rps-no-pd-none-r ws-nm">
-                <span>{{ trans('plugins/ecommerce::shipping.weight_unit', ['unit' => ecommerce_weight_unit()]) }}:</span>
-                <span><i>{{ $shipment->weight }} {{ ecommerce_weight_unit() }}</i></span>
-            </div>
         </div>
         <div class="flexbox-grid-form flexbox-grid-form-no-outside-padding rps-form-767 pt10">
             <div class="flexbox-grid-form-item ws-nm">

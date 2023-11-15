@@ -92,30 +92,6 @@ class StoreProductService
 
         $product->taxes()->sync($request->input('taxes', []));
 
-        if ($request->has('related_products')) {
-            $product->products()->detach();
-
-            if ($relatedProducts = $request->input('related_products', '')) {
-                $product->products()->attach(array_filter(explode(',', $relatedProducts)));
-            }
-        }
-
-        if ($request->has('cross_sale_products')) {
-            $product->crossSales()->detach();
-
-            if ($crossSaleProducts = $request->input('cross_sale_products', '')) {
-                $product->crossSales()->attach(array_filter(explode(',', $crossSaleProducts)));
-            }
-        }
-
-        if ($request->has('up_sale_products')) {
-            $product->upSales()->detach();
-
-            if ($upSaleProducts = $request->input('up_sale_products', '')) {
-                $product->upSales()->attach(array_filter(explode(',', $upSaleProducts)));
-            }
-        }
-
         if (EcommerceHelper::isEnabledSupportDigitalProducts() && $product->isTypeDigital()) {
             $this->saveProductFiles($request, $product);
         }

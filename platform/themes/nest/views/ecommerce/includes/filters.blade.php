@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div class="widget">
+        <div class="widget d-flex">
             <button type="submit" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5 ml-0"></i> {{ __('Filter') }}</button>
 
             <a class="clear_filter dib clear_all_filter mx-4 btn btn-danger btn-sm" href="{{ route('public.products') }}"><i class="fi-rs-refresh mr-5 ml-0"></i> {{ __('Clear All Filters') }}</a>
