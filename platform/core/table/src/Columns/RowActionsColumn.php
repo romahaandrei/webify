@@ -2,9 +2,9 @@
 
 namespace Botble\Table\Columns;
 
-use Botble\Table\Contracts\EditedColumn;
+use Botble\Table\Contracts\FormattedColumn;
 
-class RowActionsColumn extends Column implements EditedColumn
+class RowActionsColumn extends Column implements FormattedColumn
 {
     /**
      * @var \Botble\Table\Abstracts\TableActionAbstract[] $actions
@@ -39,7 +39,7 @@ class RowActionsColumn extends Column implements EditedColumn
     public function editedFormat($value): string
     {
         return view('core/table::row-actions', [
-            'model' => $this->getModel(),
+            'model' => $this->getItem(),
             'actions' => $this->getRowActions(),
         ])->render();
     }

@@ -4,13 +4,15 @@ namespace Botble\Table\Columns;
 
 use Botble\Base\Facades\Html;
 use Botble\Media\Facades\RvMedia;
-use Botble\Table\Contracts\EditedColumn;
+use Botble\Table\Contracts\FormattedColumn;
 
-class ImageColumn extends Column implements EditedColumn
+class ImageColumn extends Column implements FormattedColumn
 {
     protected bool $relative = false;
 
     protected int $width = 50;
+
+    protected string|null $mediaSize = 'thumb';
 
     public static function make(array|string $data = [], string $name = ''): static
     {
@@ -35,24 +37,41 @@ class ImageColumn extends Column implements EditedColumn
         return $this;
     }
 
+    public function mediaSize(string|null $mediaSize): static
+    {
+        $this->mediaSize = $mediaSize;
+
+        return $this;
+    }
+
+    public function fullMediaSize(): static
+    {
+        return $this->mediaSize(null);
+    }
+
     public function editedFormat($value): string
     {
         $table = $this->getTable();
 
         if ($table->request()->has('action')) {
             if ($table->isExportingToCSV()) {
-                return (string) RvMedia::getImageUrl($value, null, $this->relative, RvMedia::getDefaultImage());
+                return $this->getImageUrl($value, null);
             }
 
             if ($table->isExportingToExcel()) {
-                return (string) RvMedia::getImageUrl($value, 'thumb', $this->relative, RvMedia::getDefaultImage());
+                return $this->getImageUrl($value);
             }
         }
 
         return Html::image(
-            RvMedia::getImageUrl($value, 'thumb', $this->relative, RvMedia::getDefaultImage()),
+            $this->getImageUrl($value, $this->mediaSize),
             trans('core/base::tables.image'),
             ['width' => $this->width]
         )->toHtml();
+    }
+
+    protected function getImageUrl(string|null $value, string|null $mediaSize = 'thumb'): string
+    {
+        return (string) RvMedia::getImageUrl($value, $mediaSize, $this->relative, RvMedia::getDefaultImage());
     }
 }

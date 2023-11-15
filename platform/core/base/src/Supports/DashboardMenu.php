@@ -148,7 +148,7 @@ class DashboardMenu
         $protocol = request()->getScheme() . '://' . BaseHelper::getAdminPrefix();
 
         foreach ($links as $key => &$link) {
-            if ($link['permissions'] && ! Auth::user()->hasAnyPermission($link['permissions'])) {
+            if ($link['permissions'] && ! Auth::guard()->user()->hasAnyPermission($link['permissions'])) {
                 Arr::forget($links, $key);
 
                 continue;
@@ -168,7 +168,7 @@ class DashboardMenu
                 ->toArray();
 
             foreach ($link['children'] as $subKey => $subMenu) {
-                if ($subMenu['permissions'] && ! Auth::user()->hasAnyPermission($subMenu['permissions'])) {
+                if ($subMenu['permissions'] && ! Auth::guard()->user()->hasAnyPermission($subMenu['permissions'])) {
                     Arr::forget($link['children'], $subKey);
 
                     continue;

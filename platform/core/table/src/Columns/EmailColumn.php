@@ -3,9 +3,9 @@
 namespace Botble\Table\Columns;
 
 use Botble\Base\Facades\Html;
-use Botble\Table\Contracts\EditedColumn;
+use Botble\Table\Contracts\FormattedColumn;
 
-class EmailColumn extends Column implements EditedColumn
+class EmailColumn extends Column implements FormattedColumn
 {
     protected bool $linkable = false;
 

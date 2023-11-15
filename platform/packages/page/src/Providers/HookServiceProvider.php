@@ -107,7 +107,7 @@ class HookServiceProvider extends ServiceProvider
 
     public function registerMenuOptions(): void
     {
-        if (Auth::user()->hasPermission('pages.index')) {
+        if (Auth::guard()->user()->hasPermission('pages.index')) {
             Menu::registerMenuOptions(Page::class, trans('packages/page::pages.menu'));
         }
     }

@@ -16,8 +16,10 @@ class LanguageSeeder extends BaseSeeder
         Language::query()->truncate();
         LanguageMeta::query()->truncate();
 
-        foreach (LanguageAdvancedManager::supportedModels() as $model) {
-            DB::table((new $model())->getModel()->getTable() . '_translations')->truncate();
+        if (is_plugin_active('language-advanced')) {
+            foreach (LanguageAdvancedManager::supportedModels() as $model) {
+                DB::table((new $model())->getModel()->getTable() . '_translations')->truncate();
+            }
         }
 
         Language::query()->create([

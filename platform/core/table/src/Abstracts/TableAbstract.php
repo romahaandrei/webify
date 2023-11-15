@@ -8,14 +8,14 @@ use Botble\Base\Facades\Assets;
 use Botble\Base\Facades\Form;
 use Botble\Base\Facades\Html;
 use Botble\Base\Models\BaseModel;
+use Botble\Table\Abstracts\Concerns\DeprecatedFunctions;
 use Botble\Table\Abstracts\Concerns\HasActions;
 use Botble\Table\Abstracts\Concerns\HasBulkActions;
 use Botble\Table\Abstracts\Concerns\HasFilters;
-use Botble\Table\BulkActions\DeleteBulkAction;
 use Botble\Table\Columns\CheckboxColumn;
 use Botble\Table\Columns\Column;
 use Botble\Table\Columns\RowActionsColumn;
-use Botble\Table\Contracts\EditedColumn;
+use Botble\Table\Contracts\FormattedColumn;
 use Botble\Table\Supports\Builder as CustomTableBuilder;
 use Botble\Table\Supports\TableExportHandler;
 use Closure;
@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation as EloquentRelation;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,7 @@ use Yajra\DataTables\Services\DataTable;
 
 abstract class TableAbstract extends DataTable
 {
+    use DeprecatedFunctions;
     use HasActions;
     use HasBulkActions;
     use HasFilters;
@@ -565,8 +567,8 @@ abstract class TableAbstract extends DataTable
     }
 
     protected function applyScopes(
-        EloquentBuilder|QueryBuilder|EloquentRelation|Collection $query
-    ): EloquentBuilder|QueryBuilder|EloquentRelation|Collection {
+        EloquentBuilder|QueryBuilder|EloquentRelation|Collection|AnonymousResourceCollection $query
+    ): EloquentBuilder|QueryBuilder|EloquentRelation|Collection|AnonymousResourceCollection {
         $request = $this->request();
 
         $requestFilters = [];
@@ -693,18 +695,6 @@ abstract class TableAbstract extends DataTable
         return $buttons;
     }
 
-    /**
-     * @deprecated since v6.8.0, use `DeleteBulkAction::class` instead.
-     */
-    protected function addDeleteAction(string $url, string|null $permission = null, array $actions = []): array
-    {
-        return $actions + [
-                DeleteBulkAction::make()->action('DELETE')->permission((string)$permission)->dispatchUrl(
-                    $url
-                ),
-            ];
-    }
-
     protected function setupEditedColumns(DataTableAbstract $table): void
     {
         foreach ($this->getColumnsFromBuilder() as $column) {
@@ -718,7 +708,7 @@ abstract class TableAbstract extends DataTable
 
                     break;
 
-                case $column instanceof Column && $column instanceof EditedColumn:
+                case $column instanceof Column && $column instanceof FormattedColumn:
                     $table->editColumn($column->name, function (BaseModelContract|array $item) use ($column) {
                         return $column->renderCell($item, $this);
                     });
@@ -761,7 +751,7 @@ abstract class TableAbstract extends DataTable
 
     public function hasPermission(string $permission): bool
     {
-        $user = Auth::user();
+        $user = Auth::guard()->user();
 
         if (! $user instanceof User) {
             return true;
@@ -782,9 +772,9 @@ abstract class TableAbstract extends DataTable
     }
 
     /**
-     * @param \Closure(\Illuminate\Contracts\Database\Eloquent\Builder $query): void $queryUsingCallback
+     * @param \Closure|callable(\Illuminate\Contracts\Database\Eloquent\Builder $query): void $queryUsingCallback
      */
-    public function queryUsing(Closure $queryUsingCallback): static
+    public function queryUsing(Closure|callable $queryUsingCallback): static
     {
         $this->queryUsingCallback = $queryUsingCallback;
 

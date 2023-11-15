@@ -5,24 +5,71 @@ namespace Botble\Table\Columns;
 use Botble\Base\Contracts\BaseModel;
 use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Facades\Html;
-use Botble\Table\Contracts\EditedColumn;
+use Botble\Table\Contracts\FormattedColumn;
+use Closure;
 
-class LinkableColumn extends Column implements EditedColumn
+class LinkableColumn extends Column implements FormattedColumn
 {
-    protected array $route = [];
+    protected array $route;
 
-    protected string|null $permission = null;
+    protected string $permission;
+
+    protected string $url;
+
+    protected bool $externalLink = false;
+
+    protected Closure $urlUsingCallback;
+
+    public static function make(array|string $data = [], string $name = ''): static
+    {
+        return parent::make($data, $name)->withEmptyState();
+    }
 
     public function route(string $route, array $parameters = [], bool $absolute = true): static
     {
         $this->route = [$route, $parameters, $absolute];
 
+        $this->permission($route);
+
         return $this;
     }
 
-    public function getRoute(): array
+    public function url(string $url): static
     {
-        return $this->route;
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function externalLink(bool $externalLink = true): static
+    {
+        $this->externalLink = $externalLink;
+
+        return $this;
+    }
+
+    public function urlUsing(Closure $callback): static
+    {
+        $this->urlUsingCallback = $callback;
+
+        return $this;
+    }
+
+    public function getUrl($value): string|null
+    {
+        if (isset($this->urlUsingCallback)) {
+            return call_user_func($this->urlUsingCallback, $this);
+        }
+
+        if (isset($this->route)) {
+            return route(
+                $this->route[0],
+                $this->route[1] ?: (($item = $this->getItem()) && $item instanceof BaseModel ? $item->getKey() : null),
+                $this->route[2]
+            );
+        }
+
+        return $this->url ?? $value;
     }
 
     public function permission(string $permission): static
@@ -34,33 +81,50 @@ class LinkableColumn extends Column implements EditedColumn
 
     public function getPermission(): string|null
     {
-        return $this->permission;
+        if (isset($this->permission)) {
+            return $this->permission;
+        }
+
+        return null;
     }
 
-    public function editedFormat($value): string
+    public function editedFormat($value): string|null
     {
-        $item = $this->getModel();
+        $item = $this->getItem();
 
         if (! $item instanceof BaseModel) {
             return $value;
         }
 
-        $value = BaseHelper::clean($value);
+        if (! isset($this->getValueUsingCallback)) {
+            $value = BaseHelper::clean($value);
+        }
 
         $valueTruncated = $this->applyLimitIfAvailable($value);
 
-        $route = $this->getRoute();
-
-        if (! $route || ! $this->getTable()->hasPermission($this->getPermission() ?: $route[0])) {
-            return $valueTruncated ?: '&mdash;';
+        if (
+            ($permission =  $this->getPermission())
+            && ! $this->getTable()->hasPermission($permission)
+        ) {
+            return $valueTruncated ?: null;
         }
 
-        $value = Html::link(
-            route($route[0], $route[1] ?: $item->getKey(), $route[2]),
-            $valueTruncated,
-            ['title' => $value]
-        );
+        $attributes = ['title' => $value];
+        $link = $valueTruncated;
 
-        return apply_filters('table_name_column_data', $value, $item, $this);
+        if ($this->externalLink) {
+            $attributes['target'] = '_blank';
+        }
+
+        if ($url = $this->getUrl($value)) {
+            $link = Html::link(
+                $url,
+                $valueTruncated,
+                $attributes,
+                escape: ! $this->externalLink
+            )->toHtml();
+        }
+
+        return apply_filters('table_name_column_data', $link, $item, $this);
     }
 }

@@ -164,21 +164,19 @@ class BaseSeeder extends Seeder
     {
         $directoryPath = database_path('seeders/files/' . $path);
 
-        $files = collect();
+        $files = [];
 
         if (File::isDirectory($directoryPath)) {
-            $files = collect(
-                array_map(fn ($item) => $path . '/' . $item, BaseHelper::scanFolder($directoryPath))
-            );
+            $files = array_map(fn ($item) => $path . '/' . $item, BaseHelper::scanFolder($directoryPath));
         }
 
-        return $files;
+        return collect($files);
     }
 
     protected function saveSettings(array $settings): void
     {
         Setting::delete(array_keys($settings));
 
-        Setting::set($settings)->save();
+        Setting::forceSet($settings)->save();
     }
 }

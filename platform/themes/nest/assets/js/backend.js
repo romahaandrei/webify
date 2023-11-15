@@ -141,11 +141,11 @@
             }
         }
 
-        window.onChangeSwatchesSuccess = function(res) {
+        window.onChangeSwatchesSuccess = function(response) {
             $('.add-to-cart-form .error-message').hide()
             $('.add-to-cart-form .success-message').hide()
 
-            if (res) {
+            if (response) {
                 let buttonSubmit = $('.add-to-cart-form button[type=submit]')
                 if (response.error) {
                     buttonSubmit.prop('disabled', true).addClass('btn-disabled')
@@ -299,7 +299,7 @@
                     if (typeof refreshRecaptcha !== 'undefined') {
                         refreshRecaptcha()
                     }
-                    handleError(res)
+                    handleError(response)
                 },
                 complete: function() {
                     _self.removeClass('button-loading')
@@ -1323,8 +1323,8 @@
                             showError(response.message || 'Opp!')
                         }
                     },
-                    error: function(res) {
-                        handleError(res)
+                    error: function(response) {
+                        handleError(response)
                     },
                     complete: function() {
                         $productListing.find('.list-content-loading').hide()

@@ -33,7 +33,7 @@ class GalleryWidget extends AbstractWidget
         }
 
         return [
-            'sliders' => SimpleSlider::query()->wherePublished()->get(),
+            'sliders' => SimpleSlider::query()->wherePublished()->pluck('name', 'id')->all(),
         ];
     }
 }

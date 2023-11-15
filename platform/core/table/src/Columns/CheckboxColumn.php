@@ -3,9 +3,10 @@
 namespace Botble\Table\Columns;
 
 use Botble\Base\Facades\Form;
-use Botble\Table\Contracts\EditedColumn;
+use Botble\Base\Models\BaseModel;
+use Botble\Table\Contracts\FormattedColumn;
 
-class CheckboxColumn extends Column implements EditedColumn
+class CheckboxColumn extends Column implements FormattedColumn
 {
     public static function make(array|string $data = [], string $name = ''): static
     {
@@ -29,7 +30,7 @@ class CheckboxColumn extends Column implements EditedColumn
     public function editedFormat($value): string
     {
         return view('core/table::partials.checkbox', [
-            'id' => $this->getModel()->getKey(),
+            'id' => ($item = $this->getItem()) && $item instanceof BaseModel ? $item->getKey() : null,
         ])->render();
     }
 }

@@ -138,7 +138,14 @@ class RoleController extends BaseController
 
     public function postAssignMember(AssignRoleRequest $request, BaseHttpResponse $response): BaseHttpResponse
     {
+        /**
+         * @var User $user
+         */
         $user = User::query()->findOrFail($request->input('pk'));
+
+        /**
+         * @var Role $role
+         */
         $role = Role::query()->findOrFail($request->input('value'));
 
         $user->roles()->sync([$role->getKey()]);

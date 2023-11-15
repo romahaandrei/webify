@@ -65,7 +65,7 @@ class ProductForm extends BaseProductForm
                 ->map(fn (ProductTag $item) => $item->name)
                 ->implode(',');
         }
-
+        
         $productAttributeSets = ProductAttributeSet::getAllWithSelected($productId, []);
 
         $this

@@ -27,6 +27,9 @@ class CreateUserService implements ProduceServiceInterface
             ($roleId = $request->input('role_id')) &&
             $role = Role::query()->find($roleId)
         ) {
+            /**
+             * @var Role $role
+             */
             $role->users()->attach($user->getKey());
 
             event(new RoleAssignmentEvent($role, $user));

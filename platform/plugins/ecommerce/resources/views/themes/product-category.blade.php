@@ -18,7 +18,7 @@
                                 data-quantity='1'
                                 data-product='{{ $product->id }}'
                                 href="javascript: void(0);"
-                            >{{ __('Add') }}</a>
+                            >{{ __('Add to cart') }}</a>
                         </div>
                     </div>
                 </li>

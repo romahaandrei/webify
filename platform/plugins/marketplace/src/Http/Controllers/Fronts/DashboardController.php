@@ -229,7 +229,11 @@ class DashboardController
 
     public function postUploadFromEditor(Request $request)
     {
-        return RvMedia::uploadFromEditor($request);
+        $customer = auth('customer')->user();
+
+        $uploadFolder = $customer->store?->upload_folder ?: $customer->upload_folder;
+
+        return RvMedia::uploadFromEditor($request, 0, $uploadFolder);
     }
 
     public function getBecomeVendor()

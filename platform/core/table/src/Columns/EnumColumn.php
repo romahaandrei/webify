@@ -2,12 +2,12 @@
 
 namespace Botble\Table\Columns;
 
+use BackedEnum;
 use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Supports\Enum;
-use Botble\Table\Contracts\EditedColumn;
-use UnitEnum;
+use Botble\Table\Contracts\FormattedColumn;
 
-class EnumColumn extends Column implements EditedColumn
+class EnumColumn extends Column implements FormattedColumn
 {
     public static function make(array|string $data = [], string $name = ''): static
     {
@@ -21,11 +21,11 @@ class EnumColumn extends Column implements EditedColumn
 
     public function editedFormat($value): string
     {
-        if (! $value instanceof Enum && ! $value instanceof UnitEnum) {
+        if (! $value instanceof Enum && ! $value instanceof BackedEnum) {
             return '';
         }
 
-        if ($value instanceof UnitEnum) {
+        if ($value instanceof BackedEnum) {
             return $value->value;
         }
 

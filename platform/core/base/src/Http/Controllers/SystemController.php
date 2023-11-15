@@ -126,7 +126,7 @@ class SystemController extends Controller
     public function getLanguage(string $lang, Request $request)
     {
         if ($lang && array_key_exists($lang, Language::getAvailableLocales())) {
-            if (Auth::check()) {
+            if (Auth::guard()->check()) {
                 cache()->forget(md5('cache-dashboard-menu-' . $request->user()->getKey()));
             }
             session()->put('site-locale', $lang);

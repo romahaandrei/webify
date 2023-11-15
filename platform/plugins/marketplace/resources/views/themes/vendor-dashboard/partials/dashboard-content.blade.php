@@ -88,8 +88,8 @@
                         <div id='sales-report-chart'>
                             <sales-reports-chart
                                 url="{{ route('marketplace.vendor.chart.month') }}"
-                                date_from='{{ $data['startDate']->format('Y-m-d') }}'
-                                date_to='{{ $data['endDate']->format('Y-m-d') }}'
+                                date_from='{{ $data['startDate']->toDateString() }}'
+                                date_to='{{ $data['endDate']->toDateString() }}'
                             ></sales-reports-chart>
                         </div>
                     </div>

@@ -475,7 +475,7 @@ class RvMedia
             $file->size = $data['size'];
             $file->mime_type = $data['mime_type'];
             $file->folder_id = $folderId;
-            $file->user_id = Auth::check() ? Auth::id() : 0;
+            $file->user_id = Auth::guard()->check() ? Auth::guard()->id() : 0;
             $file->options = $request->input('options', []);
             $file->save();
 
@@ -792,7 +792,7 @@ class RvMedia
             }
 
             $folder = MediaFolder::query()->create([
-                'user_id' => Auth::check() ? Auth::id() : 0,
+                'user_id' => Auth::guard()->check() ? Auth::guard()->id() : 0,
                 'name' => MediaFolder::createName($folderSlug, 0),
                 'slug' => MediaFolder::createSlug($folderSlug, 0),
                 'parent_id' => $parentId,

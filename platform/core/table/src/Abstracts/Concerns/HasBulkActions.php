@@ -205,7 +205,7 @@ trait HasBulkActions
 
     public function saveBulkChangeItem(Model $item, string $inputKey, string|null $inputValue): Model|bool
     {
-        $item->{Auth::check() ? 'forceFill' : 'fill'}([$inputKey => $this->prepareBulkChangeValue($inputKey, $inputValue)]);
+        $item->{Auth::guard()->check() ? 'forceFill' : 'fill'}([$inputKey => $this->prepareBulkChangeValue($inputKey, $inputValue)]);
 
         $item->save();
 

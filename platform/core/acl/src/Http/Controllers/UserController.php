@@ -274,7 +274,7 @@ class UserController extends BaseController
 
     public function getTheme(string $theme)
     {
-        if (Auth::check() && ! BaseHelper::hasDemoModeEnabled()) {
+        if (Auth::guard()->check() && ! BaseHelper::hasDemoModeEnabled()) {
             UserMeta::setMeta('admin-theme', $theme);
         }
 

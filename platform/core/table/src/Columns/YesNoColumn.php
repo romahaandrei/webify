@@ -3,9 +3,9 @@
 namespace Botble\Table\Columns;
 
 use Botble\Base\Facades\Html;
-use Botble\Table\Contracts\EditedColumn;
+use Botble\Table\Contracts\FormattedColumn;
 
-class YesNoColumn extends Column implements EditedColumn
+class YesNoColumn extends Column implements FormattedColumn
 {
     public static function make(array|string $data = [], string $name = ''): static
     {

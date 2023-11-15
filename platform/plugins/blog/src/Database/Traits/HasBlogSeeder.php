@@ -68,6 +68,10 @@ trait HasBlogSeeder
                 $item['description'] = $faker->realText();
             }
 
+            if ($item['content']) {
+                $item['content'] = $this->removeBaseUrlFromString($item['content']);
+            }
+
             /**
              * @var Post $post
              */

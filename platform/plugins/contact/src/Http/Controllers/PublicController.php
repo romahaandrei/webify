@@ -53,6 +53,9 @@ class PublicController extends Controller
         }
 
         try {
+            /**
+             * @var Contact $contact
+             */
             $contact = Contact::query()->create($request->input());
 
             event(new SentContactEvent($contact));

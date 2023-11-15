@@ -52,7 +52,7 @@ class GetStartedController extends BaseController
 
                 Setting::save();
 
-                $user = Auth::user();
+                $user = Auth::guard()->user();
 
                 $defaultUsername = config('core.base.general.demo.account.username');
                 $defaultPassword = config('core.base.general.demo.account.password');
@@ -68,7 +68,7 @@ class GetStartedController extends BaseController
 
                 break;
             case 3:
-                $user = Auth::user();
+                $user = Auth::guard()->user();
 
                 $email = $request->input('email');
 

@@ -368,6 +368,9 @@ class SettingController extends BaseController
 
         foreach ($files as $file) {
             try {
+                /**
+                 * @var MediaFile $file
+                 */
                 RvMedia::generateThumbnails($file);
             } catch (Exception) {
                 $errors[] = $file->url;
