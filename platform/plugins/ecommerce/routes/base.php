@@ -131,10 +131,10 @@ Route::group(['namespace' => 'Botble\Ecommerce\Http\Controllers', 'middleware' =
             ]);
         });
 
-        Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {
-            Route::resource('', 'BrandController')
-                ->parameters(['' => 'brand']);
-        });
+        // Route::group(['prefix' => 'brands', 'as' => 'brands.'], function () {
+        //     Route::resource('', 'BrandController')
+        //         ->parameters(['' => 'brand']);
+        // });
 
         Route::group(['prefix' => 'product-collections', 'as' => 'product-collections.'], function () {
             Route::resource('', 'ProductCollectionController')
@@ -242,10 +242,10 @@ Route::group(['namespace' => 'Botble\Ecommerce\Http\Controllers\Fronts', 'middle
             'as' => 'public.products',
         ]);
 
-        Route::get(SlugHelper::getPrefix(Brand::class, 'brands') . '/{slug}', [
-            'uses' => 'PublicProductController@getBrand',
-            'as' => 'public.brand',
-        ]);
+        // Route::get(SlugHelper::getPrefix(Brand::class, 'brands') . '/{slug}', [
+        //     'uses' => 'PublicProductController@getBrand',
+        //     'as' => 'public.brand',
+        // ]);
 
         Route::get(SlugHelper::getPrefix(Product::class, 'products') . '/{slug}', [
             'uses' => 'PublicProductController@getProduct',

@@ -737,15 +737,15 @@ class EcommerceServiceProvider extends ServiceProvider
                     'url' => route('global-option.index'),
                     'permissions' => ['global-option.index'],
                 ])
-                ->registerItem([
-                    'id' => 'cms-plugins-brands',
-                    'priority' => 6,
-                    'parent_id' => 'cms-plugins-ecommerce',
-                    'name' => 'plugins/ecommerce::brands.name',
-                    'icon' => 'fa fa-registered',
-                    'url' => route('brands.index'),
-                    'permissions' => ['brands.index'],
-                ])
+                // ->registerItem([
+                //     'id' => 'cms-plugins-brands',
+                //     'priority' => 6,
+                //     'parent_id' => 'cms-plugins-ecommerce',
+                //     'name' => 'plugins/ecommerce::brands.name',
+                //     'icon' => 'fa fa-registered',
+                //     'url' => route('brands.index'),
+                //     'permissions' => ['brands.index'],
+                // ])
                 ->registerItem([
                     'id' => 'cms-plugins-product-collections',
                     'priority' => 7,
